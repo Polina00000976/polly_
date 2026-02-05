@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МАТ-ТРЕКЕР — ФАК-ФИЛЬТР - Полина Бурмистрова</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="work-styles.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        document.querySelectorAll('a, button, .nav-link, .nav-btn, .slider-btn, .work-nav-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.width = '40px'; cursor.style.height = '40px'; cursor.style.borderColor = '#4B3935'; });
+            el.addEventListener('mouseleave', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; cursor.style.borderColor = '#4B3935'; });
+        });
+    </script>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="header-back-link">← Назад</a>
+        </div>
+    </header>
+
+    <div class="work-page">
+        <div class="work-page-container">
+            <h1 class="work-page-title">МАТ-ТРЕКЕР — ФАК-ФИЛЬТР</h1>
+
+            <section class="work-gallery">
+                <h2 class="work-section-title">Галерея</h2>
+                <div class="gallery-block">
+                    <div class="gallery-images">
+                        <div class="slider-wrapper">
+                            <div class="slide active">
+                                <img src="portfolio/fuck-filter/image 45.png" alt="МАТ-ФИЛЬТР ФАКЛЯША" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 46.png" alt="Презентация проекта" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 47.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 48.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 49.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 50.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 51.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 52.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 53.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 54.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 55.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 56.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 57.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 58.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 59.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/image 60.png" alt="Презентация" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/fuck-filter/Frame 2087327756.png" alt="Мокап" class="slide-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-arrows">
+                        <button type="button" class="slider-btn prev" onclick="changeSlide(-1)" aria-label="Предыдущее">‹</button>
+                        <button type="button" class="slider-btn next" onclick="changeSlide(1)" aria-label="Следующее">›</button>
+                    </div>
+                </div>
+                <p class="slider-counter" id="slideCounter">1 / 17</p>
+                <div class="slider-dots" id="sliderDots"></div>
+            </section>
+            <div id="galleryFullscreen" class="gallery-fullscreen" aria-hidden="true">
+                <div class="gallery-fullscreen-bg" onclick="closeGalleryFullscreen()"></div>
+                <button type="button" class="gallery-fullscreen-close" onclick="closeGalleryFullscreen()" aria-label="Закрыть">×</button>
+                <div class="gallery-fullscreen-content">
+                    <img class="gallery-fullscreen-img" id="galleryFullscreenImg" src="" alt="">
+                </div>
+                <button type="button" class="gallery-fullscreen-prev" onclick="event.stopPropagation(); fullscreenPrev()" aria-label="Предыдущее">‹</button>
+                <button type="button" class="gallery-fullscreen-next" onclick="event.stopPropagation(); fullscreenNext()" aria-label="Следующее">›</button>
+                <span class="gallery-fullscreen-counter" id="galleryFullscreenCounter">1 / 17</span>
+            </div>
+
+            <section class="work-info">
+                <h2 class="work-section-title">О проекте</h2>
+                <p class="work-text">
+                    МАТ-ТРЕКЕР (ФАК-ФИЛЬТР) — многофункциональная экосистема для фильтрации контента, продвигающая идею осознанного общения в рамках концепции «Без мата дальше». Проект объединяет имиджевый промо-сайт и веб-приложение, где за техническую цензуру и навигацию отвечает маскот Факляша, делая процесс взаимодействия с сервисом живым и эмоциональным.
+                </p>
+                <p class="work-text">
+                    Платформа предлагает глубокий функционал: AI-коуч анализирует лексику в реальном времени, трекер статистики наглядно отображает прогресс, а система сообществ позволяет создавать безопасные зоны для общения по интересам. Геймификация с системой наград и ачивок превращает мониторинг контента в увлекательный процесс, стимулируя пользователей поддерживать культуру речи.
+                </p>
+                <p class="work-text">
+                    Визуальное решение базируется на модульной сетке из контрастных плашек и выразительной типографике. Это позволило структурировать сложные аналитические данные и социальные функции, сохранив интерфейс легким и интуитивно понятным. Дизайн гармонично сочетает в себе инструменты безопасности, элементы соцсети и игровые механики.
+                </p>
+
+                <h2 class="work-section-title">Задачи</h2>
+                <div class="work-tasks">
+                    <span class="work-task-pill">Исследование ЦА и контекста использования</span>
+                    <span class="work-task-pill">Концепция «Без мата дальше»</span>
+                    <span class="work-task-pill">Веб-приложение (интерфейс фильтра)</span>
+                    <span class="work-task-pill">Веб-сайт (лендинг/информационный)</span>
+                    <span class="work-task-pill">Маскот Факляша и визуальный стиль</span>
+                    <span class="work-task-pill">Варфреймы и пользовательские сценарии</span>
+                    <span class="work-task-pill">Прототипы и тестирование</span>
+                    <span class="work-task-pill">Фильтрация и отслеживание контента</span>
+                    <span class="work-task-pill">Адаптив и мобильная версия</span>
+                    <span class="work-task-pill">Мокапы и демонстрационные экраны</span>
+                    <span class="work-task-pill">Презентация проекта</span>
+                    <span class="work-task-pill">Довести до продукта</span>
+                </div>
+
+                <h2 class="work-section-title">Решение</h2>
+                <p class="work-text">
+                    Процесс проектирования начался с создания детальных схем Task Flow, которые позволили выстроить логику взаимодействия пользователя с системой фильтрации и AI-коучем. На основе этих сценариев были разработаны варфреймы для промо-сайта, веб-приложения и мобильной версии. Это помогло еще на этапе черновиков продумать удобную навигацию и информационную архитектуру, чтобы сложные аналитические данные трекера легко считывались на экранах любых размеров.
+                </p>
+                <p class="work-text">
+                    Финальный дизайн объединил в себе структурность и яркий визуальный код. В основе оформления лежит использование контрастных фиолетовых акцентов и выразительных темных контуров, которые связывают интерфейс с графикой маскота Факляши. Модульная сетка на базе плашек обеспечила единообразие всех платформ: от промо-страницы с маркетинговыми блоками до функциональных интерфейсов мобильного и веб-приложения.
+                </p>
+                <p class="work-text">
+                    Для презентации проекта был подготовлен полный пакет визуальных материалов: макеты ключевых экранов, интерактивные мокапы и презентационный кейс. Использование мокапов позволило наглядно продемонстрировать, как адаптивный дизайн сохраняет свою эргономику и визуальную привлекательность, обеспечивая бесшовный пользовательский опыт при переходе с десктопной версии в мобильный интерфейс.
+                </p>
+
+                <h2 class="work-section-title">Ссылки</h2>
+                <div class="work-links">
+                    <a href="https://www.figma.com/design/6whOECWTgZAcGIXz9UKMQS/%D0%9C%D0%B0%D1%82-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5--MAX-?node-id=60-1253&t=qHV0McVfnXhERzbd-1" class="work-link-pill" target="_blank" rel="noopener noreferrer">Figma</a>
+                    <a href="https://drive.google.com/file/d/19KaxT9X8bf9QhbSpIv9kleH1NR1bbKsu/view" class="work-link-pill" target="_blank" rel="noopener noreferrer">PDF</a>
+                </div>
+
+                <h2 class="work-section-title">Полная презентация</h2>
+                <div class="work-pdf-block">
+                    <iframe src="https://drive.google.com/file/d/19KaxT9X8bf9QhbSpIv9kleH1NR1bbKsu/preview" class="work-pdf-iframe" title="Презентация проекта (Google Drive)"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/19KaxT9X8bf9QhbSpIv9kleH1NR1bbKsu/view" target="_blank" rel="noopener noreferrer" class="work-pdf-link">Открыть презентацию на Google Диске</a>
+
+                <nav class="work-project-nav">
+                    <a href="work-2.html" class="work-nav-btn">← Предыдущий проект</a>
+                    <a href="work-4.html" class="work-nav-btn">Следующий проект →</a>
+                </nav>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        var slides = document.querySelectorAll('.slide');
+        var totalSlides = slides.length;
+        var dotsContainer = document.getElementById('sliderDots');
+        var counterEl = document.getElementById('slideCounter');
+        for (var i = 0; i < totalSlides; i++) {
+            var dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+            dot.onclick = (function(j) { return function() { currentSlide(j); }; })(i);
+            dotsContainer.appendChild(dot);
+        }
+        var dots = document.querySelectorAll('.dot');
+        function updateCounter() {
+            if (counterEl) counterEl.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function showSlide(index) {
+            currentSlideIndex = index;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            slides.forEach(function(s, i) { s.classList.toggle('active', i === currentSlideIndex); });
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlideIndex); });
+            updateCounter();
+        }
+        function changeSlide(direction) { showSlide(currentSlideIndex + direction); }
+        function currentSlide(index) { showSlide(index); }
+        function updateFullscreen() {
+            var img = document.getElementById('galleryFullscreenImg');
+            var counter = document.getElementById('galleryFullscreenCounter');
+            if (img && slides[currentSlideIndex]) {
+                var slideImg = slides[currentSlideIndex].querySelector('.slide-img');
+                if (slideImg) { img.src = slideImg.src; img.alt = slideImg.alt || ''; }
+            }
+            if (counter) counter.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function openGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.add('is-open');
+                fs.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                updateFullscreen();
+            }
+        }
+        function closeGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.remove('is-open');
+                fs.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        }
+        function fullscreenPrev() { changeSlide(-1); updateFullscreen(); }
+        function fullscreenNext() { changeSlide(1); updateFullscreen(); }
+        document.querySelector('.gallery-images').addEventListener('click', openGalleryFullscreen);
+        updateCounter();
+    </script>
+</body>
+</html>

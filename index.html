@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Полина Бурмистрова</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-load">
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+        
+        document.querySelectorAll('a, button, .nav-link, .nav-btn, .pill, .works-slider-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '44px';
+                cursor.style.height = '44px';
+                cursor.style.borderColor = '#4B3935';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '22px';
+                cursor.style.height = '22px';
+                cursor.style.borderColor = '#4B3935';
+            });
+        });
+    </script>
+    <script>
+        // Убираем класс загрузки для анимации
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.remove('page-load');
+        });
+    </script>
+    <script>
+        // Активное состояние нижнего меню при скролле (только для мобилки)
+        const sections = document.querySelectorAll('section[id]');
+        const bottomNavLinks = document.querySelectorAll('.bottom-nav-link');
+        
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            bottomNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    </script>
+    <script>
+        (function() {
+            function setAboutPhotoHeight() {
+                var textBlock = document.querySelector('#about .about-text');
+                var imageWrap = document.querySelector('#about .about-image-wrap');
+                if (textBlock && imageWrap) {
+                    imageWrap.style.height = textBlock.offsetHeight + 'px';
+                }
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                setAboutPhotoHeight();
+                window.addEventListener('resize', setAboutPhotoHeight);
+            });
+        })();
+    </script>
+    <!-- Шапка -->
+    <header class="main-header animate-header">
+        <div class="header-container">
+            <nav class="header-nav">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#about" class="nav-link">О себе</a>
+                <a href="#skills" class="nav-link">Навыки</a>
+                <a href="#works" class="nav-link">Работы</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Нижнее меню (только для мобилки) -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="#about" class="bottom-nav-link">
+                <img src="iconformobile/profile.svg" alt="" class="nav-icon-img" width="24" height="24">
+                <span class="nav-label">О себе</span>
+            </a>
+            <a href="#skills" class="bottom-nav-link">
+                <img src="iconformobile/skill.svg" alt="" class="nav-icon-img" width="24" height="24">
+                <span class="nav-label">Навыки</span>
+            </a>
+            <a href="#works" class="bottom-nav-link">
+                <img src="iconformobile/Portfolio.svg" alt="" class="nav-icon-img" width="24" height="24">
+                <span class="nav-label">Работы</span>
+            </a>
+            <a href="#contacts" class="bottom-nav-link">
+                <img src="iconformobile/Contact.svg" alt="" class="nav-icon-img" width="24" height="24">
+                <span class="nav-label">Контакты</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Секция 1: Обложка -->
+    <section id="home" class="cover-section">
+ 
+        <div class="cover-content">
+            <div class="cover-role animate-hero">Я UX‑дизайнер</div>
+            <div class="name-overlay animate-hero"><span class="name-line">Полина </span><br class="name-br-mobile"><span class="name-line">Бурмистрова</span></div>
+            <h1 class="cover-title">
+                <span class="cover-title-desktop">
+                    <span class="title-line animate-hero">КРЕАТИВНОЕ</span>
+                    <span class="title-line animate-hero">ПОРТФОЛИО</span>
+                </span>
+                <span class="cover-title-mobile">
+                    <span class="title-line animate-hero"><span class="title-accent-mid">Креа</span> <span class="title-accent">тив ное</span></span>
+                    <span class="title-line animate-hero"><span class="title-accent-mid">порт</span> <span class="title-small">фолио</span></span>
+                </span>
+            </h1>
+        </div>
+        <div class="navigation-buttons animate-hero">
+            <button class="nav-btn">Дизайн Сайтов</button>
+            <button class="nav-btn">Веб-Приложения</button>
+            <button class="nav-btn">UI/UX Дизайн</button>
+            <button class="nav-btn">Визуальный Дизайн</button>
+            <button class="nav-btn">Анализ ЦА</button>
+        </div>
+    </section>
+
+    <!-- Секция 2: О себе -->
+    <section id="about" class="about-section animate-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title">ПРИВЕТ</h2>
+                <p class="section-description">
+                    Меня зовут Полина, я UX/UI дизайнер и студентка Промтехдизайна по направлению «IT-технологии и создание цифрового контента». Благодаря техническому обучению я не просто создаю визуальные решения, а понимаю логику продукта изнутри, учитывая возможности верстки и разработки еще на этапе проектирования макета.
+                </p>
+                <p class="section-description">
+                    Я специализируюсь на создании интерфейсов разной сложности: от лаконичных лендингов до многостраничных сайтов, веб-сервисов и мобильных приложений. В каждом проекте я стремлюсь найти баланс между эстетикой и функциональностью, чтобы пользовательский опыт был бесшовным, а бизнес-задачи — решенными.
+                </p>
+                <p class="section-description">
+                    В работе я уделяю большое внимание чистоте визуальных решений и подготовке графического контента. Мой подход гарантирует не только современный UI, но и передачу в разработку аккуратных, продуманных макетов, которые легко и точно реализуются в финальном продукте.
+                </p>
+            </div>
+            <div class="about-image-wrap">
+                <div class="about-photo-wrap">
+                    <img src="photo1.svg" alt="Полина Бурмистрова" class="about-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 3: ЧТО Я УМЕЮ -->
+    <section id="skills" class="skills-section animate-section">
+        <div class="skills-container">
+            <h2 class="section-title">ЧТО Я УМЕЮ</h2>
+            <div class="skills-grid">
+                <div class="skills-group">
+                    <h3 class="skills-group-title">Навыки</h3>
+                    <div class="pill-tags">
+                        <span class="pill pill-fill">UI/UX-дизайн</span>
+                        <span class="pill pill-outline">Дизайн-системы</span>
+                        <span class="pill pill-fill">Адаптивный дизайн</span>
+                        <span class="pill pill-outline">Мобильный дизайн</span>
+                        <span class="pill pill-fill">UX-исследование</span>
+                        <span class="pill pill-outline">Типографика</span>
+                        <span class="pill pill-fill">Графический дизайн</span>
+                        <span class="pill pill-outline">Wireframe</span>
+                        <span class="pill pill-outline">User flow</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3 class="skills-group-title">Программное обеспечение</h3>
+                    <div class="pill-tags">
+                        <span class="pill pill-fill">Figma</span>
+                        <span class="pill pill-outline">Photoshop</span>
+                        <span class="pill pill-fill">Illustrator</span>
+                        <span class="pill pill-outline">HTML/CSS</span>
+                        <span class="pill pill-fill">After Effects</span>
+                        <span class="pill pill-outline">Tilda</span>
+                        <span class="pill pill-fill">InDesign</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3 class="skills-group-title">AI-Инструменты</h3>
+                    <div class="pill-tags">
+                        <span class="pill pill-fill">Cursor</span>
+                        <span class="pill pill-outline">GPT</span>
+                        <span class="pill pill-fill">ReCraft</span>
+                        <span class="pill pill-outline">Gemini</span>
+                        <span class="pill pill-fill">Nano-Banana</span>
+                        <span class="pill pill-outline">Perplexity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 4: Работы — слайдер, видно 3 работы, листание стрелками -->
+    <section id="works" class="works-section animate-section">
+        <div class="works-container">
+            <h2 class="section-title">МОИ РАБОТЫ</h2>
+            <div class="works-slider-wrap">
+                <div class="works-slider-arrows">
+                    <button type="button" class="works-slider-btn works-slider-prev" id="worksPrevBtn" onclick="worksSlide(-1)" aria-label="Предыдущие работы">‹</button>
+                    <button type="button" class="works-slider-btn works-slider-next" id="worksNextBtn" onclick="worksSlide(1)" aria-label="Следующие работы">›</button>
+                </div>
+                <div class="works-slider">
+                    <div class="works-track" id="worksTrack">
+                        <a href="work-1.html" class="work-card">
+                            <div class="work-image-placeholder">
+                                <picture>
+                                    <source media="(max-width: 768px)" srcset="portfolio/gigapin/mobile.png">
+                                    <img src="portfolio/gigapin/2.png" alt="ГИГОПИН" class="work-card-img">
+                                </picture>
+                            </div>
+                            <div class="work-info">
+                                <h3 class="work-title">ГИГОПИН</h3>
+                                <p class="work-description">Маскот-ассистент для обучения: геймификация, три уровня сложности, рейтинг и поинты, интеграция с ИИ.</p>
+                            </div>
+                        </a>
+                        <a href="work-2.html" class="work-card">
+                            <div class="work-image-placeholder">
+                                <picture>
+                                    <source media="(max-width: 768px)" srcset="portfolio/profibe/mobile.png">
+                                    <img src="portfolio/profibe/1.png" alt="ПРОФАЙБ" class="work-card-img">
+                                </picture>
+                            </div>
+                            <div class="work-info">
+                                <h3 class="work-title">ПРОФАЙБ</h3>
+                                <p class="work-description">Платформа профориентации: «прожить день изнутри» профессии, вайб и подбор по интересам, интеграция с HH.ru.</p>
+                            </div>
+                        </a>
+                        <a href="work-3.html" class="work-card">
+                            <div class="work-image-placeholder">
+                                <picture>
+                                    <source media="(max-width: 768px)" srcset="portfolio/fuck-filter/mobilee.png">
+                                    <img src="portfolio/fuck-filter/image 45.png" alt="МАТ-ТРЕКЕР — ФАК-ФИЛЬТР" class="work-card-img">
+                                </picture>
+                            </div>
+                            <div class="work-info">
+                                <h3 class="work-title">МАТ-ТРЕКЕР — ФАК-ФИЛЬТР</h3>
+                                <p class="work-description">Веб-приложение и сайт: фильтр контента, концепция «Без мата дальше», маскот Факляша.</p>
+                            </div>
+                        </a>
+                        <a href="work-4.html" class="work-card">
+                            <div class="work-image-placeholder">
+                                <picture>
+                                    <!-- Десктоп -->
+                                    <source media="(min-width: 769px)" srcset="portfolio/wild/Frame 453.png">
+                                    <!-- Мобильная: Frame453.png -->
+                                    <img src="portfolio/wild/Frame453.png" alt="WILDS DANCE FEST" class="work-card-img">
+                                </picture>
+                            </div>
+                            <div class="work-info">
+                                <h3 class="work-title">WILDS DANCE FEST</h3>
+                                <p class="work-description">Айдентика танцевального фестиваля: шрифтовой логотип, halftone, мерч и полиграфия.</p>
+                            </div>
+                        </a>
+                        <a href="work-5.html" class="work-card">
+                            <div class="work-image-placeholder">
+                                <picture>
+                                    <source media="(min-width: 769px)" srcset="portfolio/placat/А2 осетия плакат.png">
+                                    <img src="portfolio/placat/Frame 453.png" alt="Плакаты — Северная Осетия" class="work-card-img">
+                                </picture>
+                            </div>
+                            <div class="work-info">
+                                <h3 class="work-title">Плакаты — Северная Осетия</h3>
+                                <p class="work-description">Имиджевые плакаты к Новому году: горы, башни, эпос в современной цифровой иллюстрации.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var worksIndex = 0;
+                var worksTotal = 5;
+                var worksVisible = 3;
+                var worksMaxIndex = worksTotal - worksVisible;
+                function updateWorksVisible() {
+                    worksVisible = window.innerWidth <= 768 ? 1 : 3;
+                    worksMaxIndex = worksTotal - worksVisible;
+                    if (worksIndex > worksMaxIndex) worksIndex = worksMaxIndex;
+                    worksSlide(0);
+                }
+                function worksSlide(dir) {
+                    worksIndex += dir;
+                    if (worksIndex < 0) worksIndex = 0;
+                    if (worksIndex > worksMaxIndex) worksIndex = worksMaxIndex;
+                    var track = document.getElementById('worksTrack');
+                    if (track) {
+                        var stepPercent = 100 / worksTotal;
+                        track.style.transform = 'translateX(-' + (worksIndex * stepPercent) + '%)';
+                    }
+                    var prevBtn = document.getElementById('worksPrevBtn');
+                    var nextBtn = document.getElementById('worksNextBtn');
+                    if (prevBtn) { prevBtn.disabled = worksIndex === 0; prevBtn.setAttribute('aria-disabled', worksIndex === 0); }
+                    if (nextBtn) { nextBtn.disabled = worksIndex >= worksMaxIndex; nextBtn.setAttribute('aria-disabled', worksIndex >= worksMaxIndex); }
+                }
+                document.addEventListener('DOMContentLoaded', function() { updateWorksVisible(); });
+                window.addEventListener('resize', updateWorksVisible);
+            </script>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer id="contacts" class="main-footer animate-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Свяжитесь со мной</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-details">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:polina@example.com" class="contact-link">polina@example.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-details">
+                                <span class="contact-label">Телефон</span>
+                                <a href="tel:+79001234567" class="contact-link">+7 (900) 123-45-67</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">О портфолио</h3>
+                    <p class="footer-description">UI/UX дизайнер, специалист по дизайну сайтов и веб-приложений. Провожу анализ целевой аудитории и создаю интерфейсы, которые решают бизнес-задачи.</p>
+                    <div class="footer-skills">
+                        <span class="skill-tag">Дизайн сайтов</span>
+                        <span class="skill-tag">Веб-приложения</span>
+                        <span class="skill-tag">UI/UX Дизайн</span>
+                        <span class="skill-tag">Визуальный Дизайн</span>
+                        <span class="skill-tag">Анализ ЦА</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГИГОПИН - Полина Бурмистрова</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="work-styles.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        document.querySelectorAll('a, button, .nav-link, .nav-btn, .slider-btn, .work-nav-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.borderColor = '#4B3935';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.borderColor = '#4B3935';
+            });
+        });
+    </script>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="header-back-link">← Назад</a>
+        </div>
+    </header>
+
+    <div class="work-page">
+        <div class="work-page-container">
+            <h1 class="work-page-title">ГИГОПИН</h1>
+
+            <!-- Галерея -->
+            <section class="work-gallery">
+                <h2 class="work-section-title">Галерея</h2>
+                <div class="gallery-block">
+                    <div class="gallery-images">
+                        <div class="slider-wrapper">
+                            <div class="slide active"><img src="portfolio/gigapin/2.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 29.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 30.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 31.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 32.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 33.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 35.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 36.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 37.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 38.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 39.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 40.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 41.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 42.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Slide 16_9 - 43.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран1.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран2.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран3.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран4.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран5.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран6.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/экран7.png" alt="ГИГОПИН" class="slide-img"></div>
+                            <div class="slide"><img src="portfolio/gigapin/Macbook.png" alt="ГИГОПИН" class="slide-img"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-arrows">
+                        <button type="button" class="slider-btn prev" onclick="changeSlide(-1)" aria-label="Предыдущее">‹</button>
+                        <button type="button" class="slider-btn next" onclick="changeSlide(1)" aria-label="Следующее">›</button>
+                    </div>
+                </div>
+                <p class="slider-counter" id="slideCounter">1 / 23</p>
+                <div class="slider-dots" id="sliderDots"></div>
+            </section>
+            <div id="galleryFullscreen" class="gallery-fullscreen" aria-hidden="true">
+                <div class="gallery-fullscreen-bg" onclick="closeGalleryFullscreen()"></div>
+                <button type="button" class="gallery-fullscreen-close" onclick="closeGalleryFullscreen()" aria-label="Закрыть">×</button>
+                <div class="gallery-fullscreen-content">
+                    <img class="gallery-fullscreen-img" id="galleryFullscreenImg" src="" alt="">
+                </div>
+                <button type="button" class="gallery-fullscreen-prev" onclick="event.stopPropagation(); fullscreenPrev()" aria-label="Предыдущее">‹</button>
+                <button type="button" class="gallery-fullscreen-next" onclick="event.stopPropagation(); fullscreenNext()" aria-label="Следующее">›</button>
+                <span class="gallery-fullscreen-counter" id="galleryFullscreenCounter">1 / 23</span>
+            </div>
+
+            <section class="work-info">
+                <h2 class="work-section-title">ГИГОПИН О ПРОЕКТЕ</h2>
+                <p class="work-text">
+                    Гигопин — это маскот-ассистент, превращающий рутинное обучение в увлекательную игру. Проект решает проблему потери мотивации, заменяя механическое решение задач системой осмысленного прогресса. Мы создаем среду, где учеба становится азартной, честной и эмоционально вовлеченной.
+                </p>
+                <p class="work-text">
+                    Приложение предлагает три уровня сложности: от мягкого коучинга до режима «вызова» с минимумом подсказок. За объективность отвечает ИИ-контроль, который исключает бездумное списывание. Процесс дополнен фокус-таймером и системой рейтинга, что помогает удерживать дисциплину и фокус на результате.
+                </p>
+                <p class="work-text">
+                    Главным элементом вовлечения выступает маскот, который развивается вместе с пользователем. За выполнение сложных заданий ученик получает уникальные награды и поинты для прокачки напарника, благодаря чему интеллектуальный рост визуализируется в понятной игровой форме.
+                </p>
+
+                <h2 class="work-section-title">Задачи</h2>
+                <div class="work-tasks">
+                    <span class="work-task-pill">Создать варфрейм</span>
+                    <span class="work-task-pill">Создать прототип</span>
+                    <span class="work-task-pill">Главный экран и навигация</span>
+                    <span class="work-task-pill">Три уровня сложности</span>
+                    <span class="work-task-pill">Рейтинг и поинты</span>
+                    <span class="work-task-pill">Маскот и кастомизация</span>
+                    <span class="work-task-pill">Интеграция ИИ</span>
+                    <span class="work-task-pill">User flow и тех. решение</span>
+                    <span class="work-task-pill">Довести до продукта</span>
+                </div>
+
+                <h2 class="work-section-title">Решение</h2>
+                <p class="work-text">
+                    Интерфейс спроектирован на базе трехпанельной структуры (чаты — задачи — профиль) с бесшовным путем пользователя от ввода запроса до прокачки маскота. Внедрена система уровней сложности: от готовых ответов в режиме «Легко» до коучинга и системы двойных наград в режиме «Сложно», что геймифицирует процесс обучения. Техническая база объединяет разработку на LLaMA и Cursor с визуальной генерацией через Yandex ART, ReCraft и Stability AI.
+                </p>
+
+                <h2 class="work-section-title">Ссылки</h2>
+                <div class="work-links">
+                    <a href="https://www.figma.com/design/GEwSec3fDJiIU3u42I7QEv/%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%85%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD?node-id=102-81" class="work-link-pill" target="_blank" rel="noopener noreferrer">Figma</a>
+                    <a href="https://drive.google.com/file/d/1owfaGQB4vhUP4BIG7Ga_8gvWg29OuFa_/view" class="work-link-pill" target="_blank" rel="noopener noreferrer">PDF</a>
+                </div>
+
+                <h2 class="work-section-title">Полная презентация</h2>
+                <div class="work-pdf-block">
+                    <iframe src="https://drive.google.com/file/d/1owfaGQB4vhUP4BIG7Ga_8gvWg29OuFa_/preview" class="work-pdf-iframe" title="Презентация ГИГОПИН (Google Drive)"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1owfaGQB4vhUP4BIG7Ga_8gvWg29OuFa_/view" target="_blank" rel="noopener noreferrer" class="work-pdf-link">Открыть презентацию на Google Диске</a>
+
+                <nav class="work-project-nav">
+                    <a href="work-2.html" class="work-nav-btn">Следующий проект →</a>
+                </nav>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        var slides = document.querySelectorAll('.slide');
+        var totalSlides = slides.length;
+        var dotsContainer = document.getElementById('sliderDots');
+        var counterEl = document.getElementById('slideCounter');
+        for (var i = 0; i < totalSlides; i++) {
+            var dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+            dot.onclick = (function(j) { return function() { currentSlide(j); }; })(i);
+            dotsContainer.appendChild(dot);
+        }
+        var dots = document.querySelectorAll('.dot');
+        function updateCounter() {
+            if (counterEl) counterEl.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function showSlide(index) {
+            currentSlideIndex = index;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            slides.forEach(function(s, i) { s.classList.toggle('active', i === currentSlideIndex); });
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlideIndex); });
+            updateCounter();
+        }
+        function changeSlide(direction) {
+            showSlide(currentSlideIndex + direction);
+        }
+        function currentSlide(index) {
+            showSlide(index);
+        }
+        function updateFullscreen() {
+            var img = document.getElementById('galleryFullscreenImg');
+            var counter = document.getElementById('galleryFullscreenCounter');
+            if (img && slides[currentSlideIndex]) {
+                var slideImg = slides[currentSlideIndex].querySelector('.slide-img');
+                if (slideImg) {
+                    img.src = slideImg.src;
+                    img.alt = slideImg.alt || '';
+                }
+            }
+            if (counter) counter.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function openGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.add('is-open');
+                fs.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                updateFullscreen();
+            }
+        }
+        function closeGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.remove('is-open');
+                fs.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        }
+        function fullscreenPrev() {
+            changeSlide(-1);
+            updateFullscreen();
+        }
+        function fullscreenNext() {
+            changeSlide(1);
+            updateFullscreen();
+        }
+        document.querySelector('.gallery-images').addEventListener('click', openGalleryFullscreen);
+        updateCounter();
+    </script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРОФАЙБ - Полина Бурмистрова</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="work-styles.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        document.querySelectorAll('a, button, .nav-link, .nav-btn, .slider-btn, .work-nav-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.width = '40px'; cursor.style.height = '40px'; cursor.style.borderColor = '#4B3935'; });
+            el.addEventListener('mouseleave', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; cursor.style.borderColor = '#4B3935'; });
+        });
+    </script>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="header-back-link">← Назад</a>
+        </div>
+    </header>
+
+    <div class="work-page">
+        <div class="work-page-container">
+            <h1 class="work-page-title">ПРОФАЙБ</h1>
+
+            <section class="work-gallery">
+                <h2 class="work-section-title">Галерея</h2>
+                <div class="gallery-block">
+                    <div class="gallery-images">
+                        <div class="slider-wrapper">
+                            <div class="slide active">
+                                <img src="portfolio/profibe/1.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/2.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/3.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/4.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/5.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/6.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/7.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/8.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/9.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/10.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/11.png" alt="ПРОФАЙБ — галерея" class="slide-img">
+                            </div>
+                            <div class="slide">
+                                <img src="portfolio/profibe/404.png" alt="ПРОФАЙБ — страница 404" class="slide-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-arrows">
+                        <button type="button" class="slider-btn prev" onclick="changeSlide(-1)" aria-label="Предыдущее">‹</button>
+                        <button type="button" class="slider-btn next" onclick="changeSlide(1)" aria-label="Следующее">›</button>
+                    </div>
+                </div>
+                <p class="slider-counter" id="slideCounter">1 / 12</p>
+                <div class="slider-dots" id="sliderDots"></div>
+            </section>
+            <div id="galleryFullscreen" class="gallery-fullscreen" aria-hidden="true">
+                <div class="gallery-fullscreen-bg" onclick="closeGalleryFullscreen()"></div>
+                <button type="button" class="gallery-fullscreen-close" onclick="closeGalleryFullscreen()" aria-label="Закрыть">×</button>
+                <div class="gallery-fullscreen-content">
+                    <img class="gallery-fullscreen-img" id="galleryFullscreenImg" src="" alt="">
+                </div>
+                <button type="button" class="gallery-fullscreen-prev" onclick="event.stopPropagation(); fullscreenPrev()" aria-label="Предыдущее">‹</button>
+                <button type="button" class="gallery-fullscreen-next" onclick="event.stopPropagation(); fullscreenNext()" aria-label="Следующее">›</button>
+                <span class="gallery-fullscreen-counter" id="galleryFullscreenCounter">1 / 12</span>
+            </div>
+
+            <section class="work-info">
+                <h2 class="work-section-title">О проекте</h2>
+                <p class="work-text">
+                    Профайб— платформа для иммерсивной профориентации, позволяющая «прожить» рабочий день в выбранной роли. Сервис сопоставляет интересы пользователя с реальным рынком труда через интеграцию с HH.ru, помогая выбрать не просто специальность, а подходящий образ жизни и ритм.
+                </p>
+                <p class="work-text">
+                    Проект раскрывает профессию через честный график, описание командной экосистемы и трекинг личного роста. Пользователь погружается в детали рабочего процесса: от взаимодействия с коллегами и конкурентной среды до плейлистов для продуктивности, что позволяет оценить будущую работу на уровне ощущений.
+                </p>
+                <p class="work-text">
+                    Мобильная версия дополнена функцией «Заботливый коллега», которая следит за состоянием пользователя, подсказывая время для отдыха. Это превращает сложный процесс самоопределения в понятный цифровой опыт с фокусом на психологическом комфорте и реальном контексте индустрии.
+                </p>
+
+                <h2 class="work-section-title">Задачи</h2>
+                <div class="work-tasks">
+                    <span class="work-task-pill">Создать варфрейм</span>
+                    <span class="work-task-pill">Создать прототип</span>
+                    <span class="work-task-pill">Лендинг и главный экран</span>
+                    <span class="work-task-pill">Адаптация под мобильные</span>
+                    <span class="work-task-pill">Интеграция с HH.ru</span>
+                    <span class="work-task-pill">Визуальный стиль и иллюстрации</span>
+                    <span class="work-task-pill">Страницы сервиса и 404</span>
+                    <span class="work-task-pill">Довести до продукта</span>
+                </div>
+
+                <h2 class="work-section-title">Решение</h2>
+                <p class="work-text">
+                    Интерфейс спроектирован как последовательный лендинг, ведущий пользователя от выбора профессии к полному погружению в её контекст. Структура включает интерактивную проверку вакансий через HH.ru и серию тематических блоков: от честного рабочего графика и инструментов до визуализации командных результатов и личного роста.
+                </p>
+                <p class="work-text">
+                    Визуальная концепция построена на контрастном сочетании фиолетового, оранжевого и лаймового цветов. Использование скруглённых форм и абстрактных иллюстраций создает современный и дружелюбный UI, а блоки с сообщениями коллег и плейлистами добавляют интерфейсу эмоциональный отклик.
+                </p>
+                <p class="work-text">
+                    Весь дизайн-система проекта направлена на то, чтобы передать реальный «вайб» работы, сохраняя баланс между информативностью и психологическим комфортом пользователя.
+                </p>
+
+                <h2 class="work-section-title">Ссылки</h2>
+                <div class="work-links">
+                    <a href="https://www.figma.com/design/GEwSec3fDJiIU3u42I7QEv/%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%85%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD?node-id=0-1" class="work-link-pill" target="_blank" rel="noopener noreferrer">Figma</a>
+                </div>
+
+                <h2 class="work-section-title">Демонстрация сайта</h2>
+                <p class="work-text">Полноразмерный скрин страницы в виде прокручиваемого экрана (1920×1080).</p>
+                <div class="work-screen-block">
+                    <div class="work-screen-viewport">
+                        <img src="portfolio/profibe/сервис.png" alt="ПРОФАЙБ — страница сервиса" class="work-screen-img">
+                    </div>
+                </div>
+
+                <nav class="work-project-nav">
+                    <a href="work-1.html" class="work-nav-btn">← Предыдущий проект</a>
+                    <a href="work-3.html" class="work-nav-btn">Следующий проект →</a>
+                </nav>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        var slides = document.querySelectorAll('.slide');
+        var totalSlides = slides.length;
+        var dotsContainer = document.getElementById('sliderDots');
+        var counterEl = document.getElementById('slideCounter');
+        for (var i = 0; i < totalSlides; i++) {
+            var dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+            dot.onclick = (function(j) { return function() { currentSlide(j); }; })(i);
+            dotsContainer.appendChild(dot);
+        }
+        var dots = document.querySelectorAll('.dot');
+        function updateCounter() {
+            if (counterEl) counterEl.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function showSlide(index) {
+            currentSlideIndex = index;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            slides.forEach(function(s, i) { s.classList.toggle('active', i === currentSlideIndex); });
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlideIndex); });
+            updateCounter();
+        }
+        function changeSlide(direction) { showSlide(currentSlideIndex + direction); }
+        function currentSlide(index) { showSlide(index); }
+        function updateFullscreen() {
+            var img = document.getElementById('galleryFullscreenImg');
+            var counter = document.getElementById('galleryFullscreenCounter');
+            if (img && slides[currentSlideIndex]) {
+                var slideImg = slides[currentSlideIndex].querySelector('.slide-img');
+                if (slideImg) { img.src = slideImg.src; img.alt = slideImg.alt || ''; }
+            }
+            if (counter) counter.textContent = (currentSlideIndex + 1) + ' / ' + totalSlides;
+        }
+        function openGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.add('is-open');
+                fs.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                updateFullscreen();
+            }
+        }
+        function closeGalleryFullscreen() {
+            var fs = document.getElementById('galleryFullscreen');
+            if (fs) {
+                fs.classList.remove('is-open');
+                fs.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        }
+        function fullscreenPrev() { changeSlide(-1); updateFullscreen(); }
+        function fullscreenNext() { changeSlide(1); updateFullscreen(); }
+        document.querySelector('.gallery-images').addEventListener('click', openGalleryFullscreen);
+        updateCounter();
+    </script>
+</body>
+</html>
